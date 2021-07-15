@@ -31,9 +31,6 @@ public class Company {
 	
 	@Column(nullable = false)
 	private String name;
-	
-	@Column(nullable = false)
-	private String companyCode;
 
 	@Column(nullable = false)
 	private Double turnover;
@@ -49,7 +46,7 @@ public class Company {
 	@Type(type = "text")
 	private String companyBrief;
 
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "company", cascade = CascadeType.REMOVE)
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "Company", cascade = CascadeType.REMOVE)
 	@JsonIgnore
 	private IPODetail ipo;
 	
@@ -112,14 +109,6 @@ public class Company {
 
 	public void setname(String name) {
 		this.name = name;
-	}
-
-	public String getCode() {
-		return companyCode;
-	}
-
-	public void setCode(String code) {
-		this.companyCode = code;
 	}
 
 	public Double getTurnover() {

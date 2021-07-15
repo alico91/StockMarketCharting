@@ -1,8 +1,9 @@
 package com.smca.Company.Models;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,9 +30,9 @@ public class Sector {
 	@Column(name="sector_brief")
 	 private String brief;
 
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="sector")
+	@OneToMany(mappedBy="sector")
 	@JsonIgnore
-	private List<Company> companies;
+	private List<Company> companies = new ArrayList<>();
 	
 	protected Sector() {
 		

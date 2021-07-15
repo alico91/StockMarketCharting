@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -35,7 +36,10 @@ public class IPODetail {
 	
 	@Column(name="ipo_remarks")
 	private String ipoRemarks;
-
+	
+	@OneToOne
+	private Company Company;
+	
 	public Long getIpoId() {
 		return ipoId;
 	}
