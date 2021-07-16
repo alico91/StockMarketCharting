@@ -1,7 +1,7 @@
 package com.smca.Company.Controller;
 
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.smca.Company.Models.Company;
 import com.smca.Company.Models.IPODetail;
-import com.smca.Company.Models.StockPrice;
 import com.smca.Company.Services.CompanyService;
 
 @RestController
@@ -46,11 +45,6 @@ public class CompanyController {
 		return ResponseEntity.ok(ipoDetail);
 	}
 	
-	@GetMapping(path = "/{id}/stockPrices")
-	public ResponseEntity<List<StockPrice>> getStockPrices(@PathVariable Long id)	{
-		List<StockPrice> stockPrice = companyService.getStockPrices(id);
-		return ResponseEntity.ok(stockPrice);
-	}
 	
 	@PostMapping(path = "")
 	public ResponseEntity<?> addCompany(@RequestBody Company company) {

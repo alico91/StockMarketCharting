@@ -22,7 +22,7 @@ import com.smca.Company.Models.CompanyStockExchangeMap;
 import com.smca.Company.Models.StockExchange;
 import com.smca.Company.Repository.CompanyRepository;
 import com.smca.Company.Repository.CompanyStockExchangeMapRepository;
-import com.smca.Company.Repository.StockRepository;
+import com.smca.Company.Repository.StockExchangeRepository;
 
 @CrossOrigin
 @RestController
@@ -31,7 +31,7 @@ public class MainController {
 	@Autowired
 	CompanyRepository cmprep;
 	@Autowired
-	StockRepository stkrep;
+	StockExchangeRepository stkrep;
 	@Autowired
 	CompanyStockExchangeMapRepository stkcmpmaprep;
 	@Autowired

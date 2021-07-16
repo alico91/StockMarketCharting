@@ -11,7 +11,7 @@ import com.smca.Company.Models.Company;
 import com.smca.Company.Models.IPODetail;
 import com.smca.Company.Models.StockPrice;
 import com.smca.Company.Repository.CompanyRepository;
-import com.smca.Company.Repository.StockRepository;
+import com.smca.Company.Repository.StockExchangeRepository;
 
 @Service
 public class CompanyService {
@@ -20,7 +20,7 @@ public class CompanyService {
 	CompanyRepository companyRepository;
 	
 	@Autowired
-	StockRepository stockRepository;
+	StockExchangeRepository stockRepository;
 	
 	public List<Company> getCompanies(){
 		return companyRepository.findAll();
@@ -37,11 +37,6 @@ public class CompanyService {
 		return ipo;
 	}
 
-	public List<StockPrice> getStockPrices(Long id) {
-		// TODO Auto-generated method stub
-		//List<StockPrice> stockPrice = stockRepository.
-		return null;
-	}
 
 	public Object addCompany(Company company) {
 		companyRepository.save(company);

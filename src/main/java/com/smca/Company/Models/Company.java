@@ -56,7 +56,9 @@ public class Company {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnore
 	private Sector sector;
-
+	
+	private String sectorname;
+	
 	public Company() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -83,6 +85,14 @@ public class Company {
 	}
 	
 	
+	public String getSectorname() {
+		return sectorname;
+	}
+
+	public void setSectorname(String sectorname) {
+		this.sectorname = sectorname;
+	}
+
 	public List<CompanyStockExchangeMap> getCompstockmap() {
 		return compstockmap;
 	}

@@ -14,33 +14,33 @@ public class User1 {
 	
 	@Id
 	@Column(name = "Id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(name = "Username")
+	@Column(name = "username")
 	private String username;
 	
 
-	@Column(name = "Password")
+	@Column(name = "password")
 	private String password;
 	
 	
-	@Column(name = "Usertype")
+	@Column(name = "usertype")
 	private String usertype;
 	
     
-	@Column(name = "Email")
+	@Column(name = "email")
 	private String email;
 	
 
-	@Column(name = "Mobile_Number")
+	@Column(name = "mobilenumber")
 	private int mobilenumber;
 	
 
-	@Column(name = "Confirmed")
+	@Column(name = "confirmed")
 	private Boolean confirmed;
 	
-	@Column(name = "Admin")
+	@Column(name = "admin")
 	private Boolean admin;
 	
 	public Long getId() {
