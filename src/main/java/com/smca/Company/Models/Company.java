@@ -57,7 +57,6 @@ public class Company {
 	@JsonIgnore
 	private Sector sector;
 
-
 	public Company() {
 		super();
 		// TODO Auto-generated constructor stub

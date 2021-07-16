@@ -39,7 +39,10 @@ public class User1 {
 
 	@Column(name = "Confirmed")
 	private String confirmed;
-
+	
+	@Column(name = "Admin")
+	private Boolean admin;
+	
 	public int getId() {
 		return id;
 	}
@@ -96,6 +99,14 @@ public class User1 {
 		this.confirmed = confirmed;
 	}
 	
+	public Boolean getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Boolean admin) {
+		this.admin = admin;
+	}
+
 	public User1() {
 		super();
 	}
