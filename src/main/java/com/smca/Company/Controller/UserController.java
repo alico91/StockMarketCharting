@@ -51,7 +51,7 @@ public class UserController {
 
 
 			final String username = "beatstar360@gmail.com";
-			final String password = "@sakiali321";
+			final String password = "password";
 
 			Properties prop = new Properties();
 			prop.put("mail.smtp.host", "smtp.gmail.com");
