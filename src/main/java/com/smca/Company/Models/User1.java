@@ -15,7 +15,7 @@ public class User1 {
 	@Id
 	@Column(name = "Id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	
 	@Column(name = "Username")
 	private String username;
@@ -38,16 +38,16 @@ public class User1 {
 	
 
 	@Column(name = "Confirmed")
-	private String confirmed;
+	private Boolean confirmed;
 	
 	@Column(name = "Admin")
 	private Boolean admin;
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -91,11 +91,11 @@ public class User1 {
 		this.mobilenumber = mobilenumber;
 	}
 
-	public String getConfirmed() {
+	public Boolean getConfirmed() {
 		return confirmed;
 	}
 
-	public void setConfirmed(String confirmed) {
+	public void setConfirmed(Boolean confirmed) {
 		this.confirmed = confirmed;
 	}
 	
@@ -111,8 +111,8 @@ public class User1 {
 		super();
 	}
 	
-	public User1(int id, String username, String password, String usertype, String email, int mobilenumber,
-			String confirmed) {
+	public User1(Long id, String username, String password, String usertype, String email, int mobilenumber,
+			Boolean confirmed) {
 		super();
 		this.id = id;
 		this.username = username;

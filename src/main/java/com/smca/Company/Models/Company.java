@@ -83,8 +83,6 @@ public class Company {
 	}
 	
 	
-
-
 	public List<CompanyStockExchangeMap> getCompstockmap() {
 		return compstockmap;
 	}
