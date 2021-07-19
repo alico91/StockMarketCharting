@@ -1,5 +1,6 @@
 package com.smca.Company.Models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -45,7 +47,11 @@ public class Company {
 	@Column(nullable = false)
 	@Type(type = "text")
 	private String companyBrief;
-
+	
+	@OneToMany(mappedBy = "company")
+	@JsonIgnore
+	private List<StockPrice> stockPrice = new ArrayList<>();
+	
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "Company", cascade = CascadeType.REMOVE)
 	@JsonIgnore
 	private IPODetail ipo;
@@ -77,14 +83,23 @@ public class Company {
 		this.compstockmap = compstockmap;
 	}
 
-	public Company(String name, String Description) {
+	public Company(String name, String companyBrief) {
 		super();
-
+		this.companyBrief = companyBrief;
 		this.name = name;
 		
 	}
 	
 	
+	
+	public List<StockPrice> getStockPrice() {
+		return stockPrice;
+	}
+
+	public void setStockPrice(List<StockPrice> stockPrice) {
+		this.stockPrice = stockPrice;
+	}
+
 	public String getSectorname() {
 		return sectorname;
 	}

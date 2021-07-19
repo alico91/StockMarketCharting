@@ -28,10 +28,17 @@ public class StockExchange {
 		
 		// TODO Auto-generated constructor stub
 	}
+	
 	public StockExchange(String name) {
 		super();
 		this.name =name;
 		// TODO Auto-generated constructor stub
+	}
+	
+	public StockExchange(String name, List<CompanyStockExchangeMap> compstockmap) {
+		super();
+		this.name = name;
+		this.compstockmap = compstockmap;
 	}
 	public List<CompanyStockExchangeMap> getCompstockmap() {
 		return compstockmap;

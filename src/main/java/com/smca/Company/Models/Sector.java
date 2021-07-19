@@ -9,38 +9,36 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
+@NamedQuery(name = "Sector.findByname", query = "SELECT s FROM Sector s WHERE s.name = :name")
 @Entity
-@Table(name="sectors")
 public class Sector {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="sector_id")
+
 	private Long id;
 	
-	@Column(name="sector_name")
-	 private String sectorName;
+	private String name;
 	
-	@Column(name="sector_brief")
-	 private String brief;
+	private String brief;
 
 	@OneToMany(mappedBy="sector")
 	@JsonIgnore
 	private List<Company> companies = new ArrayList<>();
 	
 	protected Sector() {
-		
+		super();
 	}
 
-	public Sector(String sectorName, String brief) {
+	public Sector(String name, String brief) {
 		super();
-		this.sectorName = sectorName;
+		this.name = name;
 		this.brief = brief;
 	}
 
@@ -52,12 +50,12 @@ public class Sector {
 		this.id = id;
 	}
 
-	public String getSectorName() {
-		return sectorName;
+	public String getName() {
+		return name;
 	}
 
-	public void setSectorName(String sectorName) {
-		this.sectorName = sectorName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getBrief() {

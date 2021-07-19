@@ -7,5 +7,5 @@ import com.smca.Company.Models.IPODetail;
 
 @Repository
 public interface IPODetailRepository extends JpaRepository<IPODetail, Long> {
-	public IPODetail findByName(String companyName);
+	
 }

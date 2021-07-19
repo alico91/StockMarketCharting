@@ -1,14 +1,19 @@
 package com.smca.Company.Models;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="ipo")
@@ -38,8 +43,30 @@ public class IPODetail {
 	private String ipoRemarks;
 	
 	@OneToOne
+	@JsonIgnore
 	private Company Company;
 	
+	@ManyToMany
+	private List<StockExchange> stockExchanges = new ArrayList<>();
+	
+	
+	
+	public Company getCompany() {
+		return Company;
+	}
+
+	public void setCompany(Company company) {
+		Company = company;
+	}
+
+	public List<StockExchange> getStockExchanges() {
+		return stockExchanges;
+	}
+
+	public void setStockExchanges(List<StockExchange> stockExchanges) {
+		this.stockExchanges = stockExchanges;
+	}
+
 	public Long getIpoId() {
 		return ipoId;
 	}
@@ -94,6 +121,17 @@ public class IPODetail {
 
 	public void setIpoRemarks(String ipoRemarks) {
 		this.ipoRemarks = ipoRemarks;
+	}
+	
+	protected IPODetail() {
+		
+	}
+
+	public IPODetail(float pricePerShare, int totalNumberOfShares, Date openDateTime) {
+		super();
+		this.pricePerShare = pricePerShare;
+		this.totalNumberOfShares = totalNumberOfShares;
+		this.openDateTime = openDateTime;
 	}
 	
 	

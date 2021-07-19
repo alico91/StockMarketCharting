@@ -4,10 +4,14 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="stock_price")
@@ -15,30 +19,38 @@ public class StockPrice {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="stock_price_id")
-	private int stockPriceId;
+	
+	private int Id;
 
-	@Column(name="company_id")
 	private int companyCode;
 
-	@Column(name="stock_exchange_id")
 	private int stockExchangeId;
-
-	@Column(name="current_price")
+	
 	private float curentPrice;
-
-	@Column(name="date")
+	
 	private Date date;
-
-	@Column(name="time")
+	
 	private Date time;
-
-	public int getStockPriceId() {
-		return stockPriceId;
+	
+	@ManyToOne(fetch= FetchType.LAZY)
+	@JsonIgnore
+	private Company company;
+	
+	
+	public Company getCompany() {
+		return company;
 	}
 
-	public void setStockPriceId(int stockPriceId) {
-		this.stockPriceId = stockPriceId;
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+
+	public int getId() {
+		return Id;
+	}
+
+	public void setId(int Id) {
+		this.Id = Id;
 	}
 
 	public int getCompanyCode() {
