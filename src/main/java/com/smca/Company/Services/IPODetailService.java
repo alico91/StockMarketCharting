@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import com.smca.Company.Models.Company;
 import com.smca.Company.Models.IPODetail;
 import com.smca.Company.Repository.IPODetailRepository;
 
@@ -40,10 +40,20 @@ public class IPODetailService {
 		return updatedIpo;
 	}
 
-
 	public void deleteById(Long id) {
 		ipoRepository.deleteById(id);
 		
+	}
+
+
+	public Company getCompany(Long id) {
+		if(id == null) {
+			return null;
+		}
+		IPODetail ipo = ipoRepository.findById(id).get();
+		
+		
+		return null;
 	}
 	
 	

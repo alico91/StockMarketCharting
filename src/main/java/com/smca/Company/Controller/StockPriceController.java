@@ -18,6 +18,7 @@ import com.smca.Company.Repository.StockPriceRepository;
 
 @RestController
 @CrossOrigin
+@RequestMapping("/stockPrices")
 public class StockPriceController {
 
 	@Autowired

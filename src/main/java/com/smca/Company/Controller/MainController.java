@@ -24,7 +24,7 @@ import com.smca.Company.Repository.CompanyRepository;
 import com.smca.Company.Repository.CompanyStockExchangeMapRepository;
 import com.smca.Company.Repository.StockExchangeRepository;
 
-@CrossOrigin
+@CrossOrigin(origins= "http://localhost:4200")
 @RestController
 public class MainController {
 	
