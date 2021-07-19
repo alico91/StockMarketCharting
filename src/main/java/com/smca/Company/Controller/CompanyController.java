@@ -62,5 +62,14 @@ public class CompanyController {
 		return ResponseEntity.ok(updatedCompany);
 	}
 	
+	@PostMapping(path = "/{companyName}/ipos")
+	public void addIpoToCompany(@PathVariable String companyName, @RequestBody IPODetail ipo)
+		
+	{
+		Company company = companyService.addIpoToCompany(companyName, ipo);
+		/*if(company == null) {
+			throw new CompanyException("Company not with name : " + companyName);
+		}*/
+	}
 	
 }

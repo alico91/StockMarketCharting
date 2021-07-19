@@ -45,6 +45,15 @@ public class SectorService {
 		List<Company> companies = sector.get().getCompanies();
 		return companies;
 	}
+
+	public Sector addCompanyToSector(String sectorName, Company company) {
+		Sector sector = sectorRepository.findByName(sectorName);
+		if(sector == null)
+			return null;
+		sector.getCompanies().add(company);
+		sector = sectorRepository.save(sector);
+		return sector;
+	}
 	
 	
 	

@@ -67,4 +67,10 @@ public class SectorController {
 		return ResponseEntity.ok(companies);
 	}
 	
+	@PostMapping(path = "/{sectorName}/companies")
+	public void addCompanyToSector(@PathVariable String sectorName, @RequestBody Company company){
+		Sector sector = sectorService.addCompanyToSector(sectorName, company);
+
+	}
+	
 }

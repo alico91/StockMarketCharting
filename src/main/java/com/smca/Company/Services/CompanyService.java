@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 
 import com.smca.Company.Models.Company;
 import com.smca.Company.Models.IPODetail;
+import com.smca.Company.Models.Sector;
 import com.smca.Company.Models.StockPrice;
 import com.smca.Company.Repository.CompanyRepository;
+import com.smca.Company.Repository.SectorRepository;
 import com.smca.Company.Repository.StockExchangeRepository;
 
 @Service
@@ -21,6 +23,9 @@ public class CompanyService {
 	
 	@Autowired
 	StockExchangeRepository stockRepository;
+	
+	@Autowired
+	private SectorRepository sectorrepo;
 	
 	public List<Company> getCompanies(){
 		return companyRepository.findAll();
@@ -38,15 +43,17 @@ public class CompanyService {
 	}
 
 
-	public Object addCompany(Company company) {
-		companyRepository.save(company);
-		return null;
+	public Company addCompany(Company company) {
+		Sector sector = sectorrepo.findByName(company.getSectorname());
+		if(sector==null)
+        	return null;
+        company.setSector(sector);
+		company = companyRepository.save(company);
+		return company;
 	}
 
 	public void deleteCompany(Long id) {
-		Optional<Company> company = companyRepository.findById(id);
-		Company comp = company.get();
-		companyRepository.delete(comp);
+		companyRepository.deleteById(id);
 	}
 
 	public Company editCompany(Company company) {
@@ -57,7 +64,15 @@ public class CompanyService {
 		
 	}
 	
-	
+	public Company addIpoToCompany(String companyName, IPODetail ipo) {
+		
+		Company company = companyRepository.findByName(companyName);
+		if(company == null)
+			return null;
+		company.setIpo(ipo);
+		company = companyRepository.save(company);
+		return company;
+	}
 	
 	
 	

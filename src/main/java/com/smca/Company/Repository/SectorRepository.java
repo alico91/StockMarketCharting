@@ -7,5 +7,5 @@ import com.smca.Company.Models.Sector;
 
 @Repository
 public interface SectorRepository extends JpaRepository<Sector,Long>{
-
+	public Sector findByName(String name);
 }
