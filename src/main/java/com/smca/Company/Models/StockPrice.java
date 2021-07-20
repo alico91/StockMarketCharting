@@ -1,5 +1,6 @@
 package com.smca.Company.Models;
 
+import java.sql.Time;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -19,18 +20,17 @@ public class StockPrice {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
 	private int Id;
 
-	private int companyCode;
+	private String companyCode;
 
-	private int stockExchangeId;
+	private String exchangeName;
 	
-	private float curentPrice;
+	private float currentPrice;
 	
 	private Date date;
 	
-	private Date time;
+	private Time time;
 	
 	@ManyToOne(fetch= FetchType.LAZY)
 	@JsonIgnore
@@ -53,28 +53,28 @@ public class StockPrice {
 		this.Id = Id;
 	}
 
-	public int getCompanyCode() {
+	public String getCompanyCode() {
 		return companyCode;
 	}
 
-	public void setCompanyCode(int companyCode) {
+	public void setCompanyCode(String companyCode) {
 		this.companyCode = companyCode;
 	}
 
-	public int getStockExchangeId() {
-		return stockExchangeId;
+	public String getExchangeName() {
+		return exchangeName;
 	}
 
-	public void setStockExchangeId(int stockExchangeId) {
-		this.stockExchangeId = stockExchangeId;
+	public void setExchangeName(String exchangeName) {
+		this.exchangeName = exchangeName;
 	}
 
-	public float getCurentPrice() {
-		return curentPrice;
+	public float getCurrentPrice() {
+		return currentPrice;
 	}
 
-	public void setCurentPrice(float curentPrice) {
-		this.curentPrice = curentPrice;
+	public void setCurrentPrice(float currentPrice) {
+		this.currentPrice = currentPrice;
 	}
 
 	public Date getDate() {
@@ -85,11 +85,11 @@ public class StockPrice {
 		this.date = date;
 	}
 
-	public Date getTime() {
+	public Time getTime() {
 		return time;
 	}
 
-	public void setTime(Date time) {
+	public void setTime(Time time) {
 		this.time = time;
 	}
 	

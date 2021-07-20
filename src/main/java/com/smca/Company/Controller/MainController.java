@@ -46,7 +46,7 @@ public class MainController {
 		return ResponseEntity.created(location).build();
 	}
 
-	@RequestMapping(value = "/mapcompanycode", method = RequestMethod.POST)
+	//@RequestMapping(value = "/mapcompanycode", method = RequestMethod.POST)
 	// pass map of string in requestbody ,instead of pojo class to get
 	// non entity based params
 //This method maps company to stockmarket	

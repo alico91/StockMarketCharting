@@ -20,8 +20,12 @@ public class CompanyStockExchangeMap {
 	
 	private String CompanyCode;
 	
+	private String CompanyName;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Company company;
+	
+	private String stockExchangeName;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private StockExchange stockExchange;
@@ -40,6 +44,32 @@ public class CompanyStockExchangeMap {
 
 	public void setStockexchange(StockExchange stockExchange) {
 		this.stockExchange = stockExchange;
+	}
+	
+	
+	
+	public String getStockExchangeName() {
+		return stockExchangeName;
+	}
+
+	public void setStockExchangeName(String stockExchangeName) {
+		this.stockExchangeName = stockExchangeName;
+	}
+
+	public StockExchange getStockExchange() {
+		return stockExchange;
+	}
+
+	public void setStockExchange(StockExchange stockExchange) {
+		this.stockExchange = stockExchange;
+	}
+
+	public String getCompanyName() {
+		return CompanyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		CompanyName = companyName;
 	}
 
 	public long getId() {
