@@ -16,40 +16,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smca.Company.Models.Company;
-import com.smca.Company.Models.IPODetail;
-import com.smca.Company.Services.IPODetailService;
+import com.smca.Company.Models.Ipo;
+import com.smca.Company.Services.CompanyService;
+import com.smca.Company.Services.IpoService;
 
 
 @RestController
 @CrossOrigin(origins= "http://localhost:4200")
 @RequestMapping("/ipos")
-public class IPODetailController {
+public class IpoController {
 	
 	@Autowired
-	private IPODetailService ipoService;
+	private IpoService ipoService;
+
 	
 	@GetMapping(path = "")
-	public ResponseEntity<List<IPODetail>> findAll() {
+	public ResponseEntity<List<Ipo>> findAll() {
 		return ResponseEntity.ok(ipoService.findAll());
 	}
 	
 	@GetMapping(path = "/{id}")
-	public ResponseEntity<IPODetail> findById(@PathVariable Long id){
-		IPODetail ipoDetail = ipoService.findById(id);
+	public ResponseEntity<Ipo> findById(@PathVariable Long id){
+		Ipo ipoDetail = ipoService.findById(id);
 		return ResponseEntity.ok(ipoDetail);
 	}
 	
 	@PostMapping(path = "")
-	public ResponseEntity<IPODetail> save(@RequestBody IPODetail ipo){
-		IPODetail addedIpo = ipoService.save(ipo);
+	public ResponseEntity<Ipo> save(@RequestBody Ipo ipo){
+		Ipo addedIpo = ipoService.save(ipo);
 		return ResponseEntity
 				.status(HttpStatus.CREATED)
 				.body(addedIpo);
 	}
 	
 	@PutMapping(path = "")
-	public ResponseEntity<IPODetail> update(@RequestBody IPODetail ipo){
-		IPODetail updatedIpo = ipoService.update(ipo);
+	public ResponseEntity<Ipo> update(@RequestBody Ipo ipo){
+		Ipo updatedIpo = ipoService.update(ipo);
 		return ResponseEntity.ok(updatedIpo);
 	}
 	

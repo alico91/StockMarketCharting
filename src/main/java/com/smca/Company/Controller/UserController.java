@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.smca.Company.Models.User1;
 import com.smca.Company.Repository.UserRepository;
 
+@CrossOrigin(origins= "http://localhost:4200")
 @RestController
 public class UserController {
 	

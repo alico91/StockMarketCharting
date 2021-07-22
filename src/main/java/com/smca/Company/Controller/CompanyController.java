@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smca.Company.Models.Company;
-import com.smca.Company.Models.IPODetail;
+import com.smca.Company.Models.Ipo;
 import com.smca.Company.Services.CompanyService;
 
 @RestController
@@ -39,13 +39,6 @@ public class CompanyController {
 		return ResponseEntity.ok(company);
 	}
 	
-	@GetMapping(path = "/{id}/ipos")
-	public ResponseEntity<IPODetail> getCompanyIpoDetails(@PathVariable Long id){
-		IPODetail ipoDetail = companyService.getCompanyIpoDetails(id);
-		return ResponseEntity.ok(ipoDetail);
-	}
-	
-	
 	@PostMapping(path = "")
 	public ResponseEntity<?> addCompany(@RequestBody Company company) {
 		return ResponseEntity.ok(companyService.addCompany(company));
@@ -62,11 +55,15 @@ public class CompanyController {
 		return ResponseEntity.ok(updatedCompany);
 	}
 	
-	@PostMapping(path = "/{companyName}/ipos")
-	public void addIpoToCompany(@PathVariable String companyName, @RequestBody IPODetail ipo)
-		
-	{
-		Company company = companyService.addIpoToCompany(companyName, ipo);
+	@GetMapping(path = "/{id}/ipos")
+	public ResponseEntity<Ipo> getCompanyIpoDetails(@PathVariable Long id){
+		Ipo ipoDetail = companyService.getCompanyIpoDetails(id);
+		return ResponseEntity.ok(ipoDetail);
+	}
+	
+	@PostMapping(path = "/{id}/ipos")
+	public void addIpoToCompany(@PathVariable Long id, @RequestBody Ipo ipo){
+		Company company = companyService.addIpoToCompany(id, ipo);
 		/*if(company == null) {
 			throw new CompanyException("Company not with name : " + companyName);
 		}*/

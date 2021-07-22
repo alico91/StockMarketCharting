@@ -4,37 +4,34 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="ipo")
-public class IPODetail {
+public class Ipo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ipo_id")
-	private Long ipoId;
-	
-	@Column(name="company_name")
-	private String companyName;
-	
-	@Column(name="stock_exchange_id")
-	private int stockExchangeId;
+	@Column(name="id")
+	private Long id;
 	
 	@Column(name="price_per_share")
-	private float pricePerShare;
+	private Double pricePerShare;
 	
 	@Column(name="total_number_of_shares")
-	private int totalNumberOfShares;
+	private Long totalNumberOfShares;
 	
 	@Column(name="open_date_time")
 	private Date openDateTime;
@@ -42,21 +39,33 @@ public class IPODetail {
 	@Column(name="ipo_remarks")
 	private String ipoRemarks;
 	
-	@OneToOne
+	private String companyName;
+	
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonIgnore
-	private Company Company;
+	private Company company;
 	
 	@ManyToMany
 	private List<StockExchange> stockExchanges = new ArrayList<>();
 	
 	
 	
+	
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
 	public Company getCompany() {
-		return Company;
+		return company;
 	}
 
 	public void setCompany(Company company) {
-		Company = company;
+		this.company = company;
 	}
 
 	public List<StockExchange> getStockExchanges() {
@@ -67,43 +76,27 @@ public class IPODetail {
 		this.stockExchanges = stockExchanges;
 	}
 
-	public Long getIpoId() {
-		return ipoId;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIpoId(Long ipoId) {
-		this.ipoId = ipoId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public String getCompanyName() {
-		return companyName;
-	}
-
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
-	}
-
-	public int getStockExchangeId() {
-		return stockExchangeId;
-	}
-
-	public void setStockExchangeId(int stockExchangeId) {
-		this.stockExchangeId = stockExchangeId;
-	}
-
-	public float getPricePerShare() {
+	public Double getPricePerShare() {
 		return pricePerShare;
 	}
 
-	public void setPricePerShare(float pricePerShare) {
+	public void setPricePerShare(Double pricePerShare) {
 		this.pricePerShare = pricePerShare;
 	}
 
-	public int getTotalNumberOfShares() {
+	public Long getTotalNumberOfShares() {
 		return totalNumberOfShares;
 	}
 
-	public void setTotalNumberOfShares(int totalNumberOfShares) {
+	public void setTotalNumberOfShares(Long totalNumberOfShares) {
 		this.totalNumberOfShares = totalNumberOfShares;
 	}
 
@@ -123,11 +116,11 @@ public class IPODetail {
 		this.ipoRemarks = ipoRemarks;
 	}
 	
-	protected IPODetail() {
+	protected Ipo() {
 		
 	}
 
-	public IPODetail(float pricePerShare, int totalNumberOfShares, Date openDateTime) {
+	public Ipo(Double pricePerShare, Long totalNumberOfShares, Date openDateTime) {
 		super();
 		this.pricePerShare = pricePerShare;
 		this.totalNumberOfShares = totalNumberOfShares;

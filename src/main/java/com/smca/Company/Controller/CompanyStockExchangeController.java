@@ -33,7 +33,7 @@ public class CompanyStockExchangeController {
 		csemap.setCompanyCode(cmpstkmap.getCompanyCode());
 		csemap.setCompany(company);
 		csemap.setCompanyName(cmpstkmap.getCompanyName());
-		csemap.setStockexchange(stkexchg);
+		csemap.setStockExchange(stkexchg);
 		csemap.setStockExchangeName(cmpstkmap.getStockExchangeName());
 		compstkmaprepo.save(csemap);
 		return csemap;

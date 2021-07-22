@@ -19,10 +19,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class StockPrice {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int Id;
 
 	private String companyCode;
+	
+	private String companyName;
 
 	private String exchangeName;
 	
@@ -91,6 +93,14 @@ public class StockPrice {
 
 	public void setTime(Time time) {
 		this.time = time;
+	}
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 	
 	

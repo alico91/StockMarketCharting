@@ -8,10 +8,11 @@ import org.springframework.stereotype.Service;
 
 
 import com.smca.Company.Models.Company;
-import com.smca.Company.Models.IPODetail;
+import com.smca.Company.Models.Ipo;
 import com.smca.Company.Models.Sector;
 import com.smca.Company.Models.StockPrice;
 import com.smca.Company.Repository.CompanyRepository;
+import com.smca.Company.Repository.IpoRepository;
 import com.smca.Company.Repository.SectorRepository;
 import com.smca.Company.Repository.StockExchangeRepository;
 
@@ -27,6 +28,9 @@ public class CompanyService {
 	@Autowired
 	private SectorRepository sectorrepo;
 	
+	@Autowired
+	private IpoRepository iporepo;
+	
 	public List<Company> getCompanies(){
 		return companyRepository.findAll();
 	}
@@ -36,15 +40,15 @@ public class CompanyService {
 		return company.get();
 	}
 
-	public IPODetail getCompanyIpoDetails(Long id) {
+	public Ipo getCompanyIpoDetails(Long id) {
 		Optional<Company> company = companyRepository.findById(id);
-		IPODetail ipo = company.get().getIpo();
+		Ipo ipo = company.get().getIpo();
 		return ipo;
 	}
 
 
 	public Company addCompany(Company company) {
-		Sector sector = sectorrepo.findByName(company.getSectorname());
+		Sector sector = sectorrepo.findByName(company.getSectorName());
 		if(sector==null)
         	return null;
         company.setSector(sector);
@@ -64,12 +68,15 @@ public class CompanyService {
 		
 	}
 	
-	public Company addIpoToCompany(String companyName, IPODetail ipo) {
+	public Company addIpoToCompany(Long id, Ipo ipo) {
 		
-		Company company = companyRepository.findByName(companyName);
+		Company company = companyRepository.findById(id).get();
 		if(company == null)
 			return null;
+		
 		company.setIpo(ipo);
+		ipo.setCompany(company);
+		iporepo.save(ipo);
 		company = companyRepository.save(company);
 		return company;
 	}

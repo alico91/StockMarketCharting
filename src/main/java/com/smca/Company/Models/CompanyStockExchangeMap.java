@@ -3,6 +3,7 @@ package com.smca.Company.Models;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -15,12 +16,12 @@ import javax.persistence.Table;
 public class CompanyStockExchangeMap {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	private String CompanyCode;
+	private String companyCode;
 	
-	private String CompanyName;
+	private String companyName;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Company company;
@@ -65,11 +66,11 @@ public class CompanyStockExchangeMap {
 	}
 
 	public String getCompanyName() {
-		return CompanyName;
+		return companyName;
 	}
 
 	public void setCompanyName(String companyName) {
-		CompanyName = companyName;
+		this.companyName = companyName;
 	}
 
 	public long getId() {
@@ -81,11 +82,11 @@ public class CompanyStockExchangeMap {
 	}
 	
 	public String getCompanyCode() {
-		return CompanyCode;
+		return companyCode;
 	}
 
 	public void setCompanyCode(String companyCode) {
-		CompanyCode = companyCode;
+		this.companyCode = companyCode;
 	}
 	
 	public CompanyStockExchangeMap() {

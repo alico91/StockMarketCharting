@@ -19,7 +19,7 @@ import com.smca.Company.Models.StockExchange;
 import com.smca.Company.Services.StockExchangeService;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins= "http://localhost:4200")
 @RequestMapping("/stockExchanges")
 public class StockExchangeController {
 	
@@ -37,7 +37,7 @@ public class StockExchangeController {
 		return ResponseEntity.ok(stockExchange);
 	}
 	
-	@PostMapping(path = "")
+	@PostMapping(path = "", headers = "Accept=application/json")
 	public ResponseEntity<StockExchange> addStockExchange(@RequestBody StockExchange stockExchange) {
 		return ResponseEntity.ok(stockExchangeService.addStockExchange(stockExchange));
 	}

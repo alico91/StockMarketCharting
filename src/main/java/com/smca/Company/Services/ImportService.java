@@ -48,7 +48,7 @@ public class ImportService {
             }
             Optional<StockExchange>stockExchangeOptional=stockExchangeRepository.findById((Long)Math.round(row.getCell(1).getNumericCellValue()));
             if(stockExchangeOptional.isPresent())
-            	stockprice.setExchangeName(stockExchangeOptional.get().getname());
+            	stockprice.setExchangeName(stockExchangeOptional.get().getName());
             else
                 return new ArrayList<>();
             stockprice.setCurrentPrice((float)row.getCell(2).getNumericCellValue());

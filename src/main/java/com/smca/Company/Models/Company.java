@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,7 +29,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Company {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	@Column(nullable = false)
@@ -52,9 +53,8 @@ public class Company {
 	@JsonIgnore
 	private List<StockPrice> stockPrice = new ArrayList<>();
 	
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "Company", cascade = CascadeType.REMOVE)
-	@JsonIgnore
-	private IPODetail ipo;
+	@OneToOne(fetch = FetchType.LAZY, mappedBy="company", cascade = CascadeType.REMOVE)
+	private Ipo ipo;
 	
 	@OneToMany(targetEntity = CompanyStockExchangeMap.class)
 	private List<CompanyStockExchangeMap> compstockmap;
@@ -63,7 +63,7 @@ public class Company {
 	@JsonIgnore
 	private Sector sector;
 	
-	private String sectorname;
+	private String sectorName;
 	
 	public Company() {
 		super();
@@ -100,12 +100,12 @@ public class Company {
 		this.stockPrice = stockPrice;
 	}
 
-	public String getSectorname() {
-		return sectorname;
+	public String getSectorName() {
+		return sectorName;
 	}
 
-	public void setSectorname(String sectorname) {
-		this.sectorname = sectorname;
+	public void setSectorName(String sectorName) {
+		this.sectorName = sectorName;
 	}
 
 	public List<CompanyStockExchangeMap> getCompstockmap() {
@@ -165,11 +165,11 @@ public class Company {
 		this.companyBrief = companyBrief;
 	}
 
-	public IPODetail getIpo() {
+	public Ipo getIpo() {
 		return ipo;
 	}
 
-	public void setIpo(IPODetail ipo) {
+	public void setIpo(Ipo ipo) {
 		this.ipo = ipo;
 	}
 

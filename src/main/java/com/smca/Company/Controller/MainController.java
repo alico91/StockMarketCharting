@@ -75,7 +75,7 @@ public String mapcode(@RequestBody Map<String, String> text) {
 		for (CompanyStockExchangeMap c:csem)  {
 			Optional<StockExchange> s =	stkrep.findById(c.getStockexchange().getId()); 
 			Optional<Company> cc =cmprep.findById(c.getCompany().getId());
-				x= x + "   "+cc.get().getname() + "   "+s.get().getname(); //getcompany code can be added here
+				x= x + "   "+cc.get().getname() + "   "+s.get().getName(); //getcompany code can be added here
 		}
 		
 		

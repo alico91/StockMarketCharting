@@ -48,10 +48,7 @@ public class SectorController {
 	
 	@PutMapping(path = "")
 	public ResponseEntity<Sector> update(@RequestBody Sector sector){
-		Sector updatedSector = sectorService.save(sector);
-		/*if(updatedSectorDto == null) {
-			throw new SectorNotFoundException("Sector not found for id : " + sector.getId());
-		}*/
+		Sector updatedSector = sectorService.update(sector);
 		return ResponseEntity.ok(updatedSector);
 	}
 	
@@ -63,16 +60,7 @@ public class SectorController {
 	@GetMapping(path = "/{id}/companies")
 	public ResponseEntity<List<Company>> getCompanies(@PathVariable long id){
 		List<Company> companies = sectorService.getCompanies(id);
-		/*if(company == null) {
-			throw new SectorNotFoundException("Sector not found for id : " + id);
-		}*/
 		return ResponseEntity.ok(companies);
-	}
-	
-	@PostMapping(path = "/{sectorName}/companies")
-	public void addCompanyToSector(@PathVariable String sectorName, @RequestBody Company company){
-		Sector sector = sectorService.addCompanyToSector(sectorName, company);
-
 	}
 	
 }

@@ -13,20 +13,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.smca.Company.Models.Company;
 import com.smca.Company.Models.StockPrice;
+import com.smca.Company.Repository.CompanyRepository;
 import com.smca.Company.Repository.StockPriceRepository;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins= "http://localhost:4200")
 @RequestMapping("/stockPrices")
 public class StockPriceController {
 
 	@Autowired
 	StockPriceRepository stkpricerepo;
 	
+	@Autowired
+	CompanyRepository companyrepo;
+	
 	@RequestMapping(value = "/addstockprices",method=RequestMethod.POST)
 	public  ResponseEntity<Object> stockpriceapi(@RequestBody StockPrice stockprice) throws ClassNotFoundException, IOException {
-
+		
+		Company company = companyrepo.findByName(stockprice.getCompanyName());
+		stockprice.setCompany(company);
 	    StockPrice stkprice= stkpricerepo.save(stockprice);
 	    System.out.println(stkprice +"check this " +stkprice.getCompanyCode());
 
