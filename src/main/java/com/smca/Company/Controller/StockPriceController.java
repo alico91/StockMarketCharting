@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.smca.Company.Models.Company;
+import com.smca.Company.Models.CompanyStockExchangeMap;
 import com.smca.Company.Models.StockPrice;
 import com.smca.Company.Repository.CompanyRepository;
+import com.smca.Company.Repository.CompanyStockExchangeMapRepository;
 import com.smca.Company.Repository.StockPriceRepository;
 
 @RestController
@@ -29,10 +31,14 @@ public class StockPriceController {
 	@Autowired
 	CompanyRepository companyrepo;
 	
+	@Autowired
+	CompanyStockExchangeMapRepository csemrepo; 
+	
 	@RequestMapping(value = "/addstockprices",method=RequestMethod.POST)
 	public  ResponseEntity<Object> stockpriceapi(@RequestBody StockPrice stockprice) throws ClassNotFoundException, IOException {
 		
-		Company company = companyrepo.findByName(stockprice.getCompanyName());
+		CompanyStockExchangeMap csemap = csemrepo.findByCompanyCode(stockprice.getCompanyCode());
+		Company company = companyrepo.findByName(csemap.getCompanyName());
 		stockprice.setCompany(company);
 	    StockPrice stkprice= stkpricerepo.save(stockprice);
 	    System.out.println(stkprice +"check this " +stkprice.getCompanyCode());

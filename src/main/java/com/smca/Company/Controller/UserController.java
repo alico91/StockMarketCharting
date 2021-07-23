@@ -51,8 +51,8 @@ public class UserController {
 
 
 
-			final String username = "beatstar360@gmail.com";
-			final String password = "password";
+			final String username = "socgentraining@gmail.com";
+			final String password = "suckgensucks";
 
 			Properties prop = new Properties();
 			prop.put("mail.smtp.host", "smtp.gmail.com");
@@ -70,7 +70,7 @@ public class UserController {
 			try {
 
 				Message message = new MimeMessage(session);
-				message.setFrom(new InternetAddress("beatstar360@gmail.com"));
+				message.setFrom(new InternetAddress("socgentraining@gmail.com"));
 				//message.setRecipients(
 					//	Message.RecipientType.TO,
 					//	InternetAddress.parse("sftrainerram@gmail.com")

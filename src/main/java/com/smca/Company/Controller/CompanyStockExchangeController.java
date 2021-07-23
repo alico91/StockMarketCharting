@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smca.Company.Models.Company;
@@ -15,6 +16,7 @@ import com.smca.Company.Repository.StockExchangeRepository;
 
 @RestController
 @CrossOrigin("http:localhost:4200")
+@RequestMapping("/mapcompanycode")
 public class CompanyStockExchangeController {
 	
 	@Autowired
@@ -24,7 +26,7 @@ public class CompanyStockExchangeController {
 	@Autowired
 	StockExchangeRepository stkrepo;
 	
-	@PostMapping(path="/mapcompanycode")
+	@PostMapping(path="")
 	public CompanyStockExchangeMap mapcode(@RequestBody CompanyStockExchangeMap cmpstkmap) {
 		
 		Company company=cmprepo.findByName(cmpstkmap.getCompanyName());

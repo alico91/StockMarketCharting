@@ -23,8 +23,6 @@ public class StockPrice {
 	private int Id;
 
 	private String companyCode;
-	
-	private String companyName;
 
 	private String exchangeName;
 	
@@ -94,15 +92,6 @@ public class StockPrice {
 	public void setTime(Time time) {
 		this.time = time;
 	}
-
-	public String getCompanyName() {
-		return companyName;
-	}
-
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
-	}
-	
 	
 	
 }
