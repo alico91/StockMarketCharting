@@ -34,6 +34,7 @@ public class CompanyStockExchangeController {
 	public CompanyStockExchangeMap mapcode(@RequestBody CompanyStockExchangeMap cmpstkmap) {
 		
 		Company company=cmprepo.findByName(cmpstkmap.getCompanyName());
+		
 		StockExchange stkexchg=stkrepo.findByName(cmpstkmap.getStockExchangeName());
 		CompanyStockExchangeMap csemap = new CompanyStockExchangeMap();
 		csemap.setCompanyCode(cmpstkmap.getCompanyCode());
@@ -41,6 +42,8 @@ public class CompanyStockExchangeController {
 		csemap.setCompanyName(cmpstkmap.getCompanyName());
 		csemap.setStockExchange(stkexchg);
 		csemap.setStockExchangeName(cmpstkmap.getStockExchangeName());
+		company.getStockExchanges().add(stkexchg);
+		cmprepo.save(company);
 		compstkmaprepo.save(csemap);
 		return csemap;
 	}

@@ -2,6 +2,7 @@ package com.smca.Company.Controller;
 
 import java.io.IOException;
 import java.net.URI;
+import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.smca.Company.Dto.CompanyCompareRequest;
 import com.smca.Company.Models.Company;
 import com.smca.Company.Models.CompanyStockExchangeMap;
 import com.smca.Company.Models.StockPrice;
@@ -25,7 +27,7 @@ import com.smca.Company.Repository.StockPriceRepository;
 import com.smca.Company.Services.StockPriceService;
 
 @RestController
-@CrossOrigin(origins= "http://localhost:4200")
+@CrossOrigin(origins= "http://localhost:4200", exposedHeaders="Access-Control-Allow-Origin")
 @RequestMapping("/stockPrices")
 public class StockPriceController {
 
@@ -70,14 +72,21 @@ public class StockPriceController {
 	    return stkprice;
 	}
 	
-//	@GetMapping(path = "/compareCompany")
-//	public ResponseEntity<?> companyComparison(@RequestBody CompanyCompareRequest compareRequest)
-//	{
-//		List<StockPrice> stockPrices = null;
-//		stockPrices = StockPriceService.getStockPricesForCompanyComparison(compareRequest);
-//		
-//		return ResponseEntity.ok(stockPrices);
-//	}
+	@GetMapping(path = "/compareCompany")
+	public ResponseEntity<?> companyComparison(@RequestBody CompanyCompareRequest compareRequest)
+	{
+		List<StockPrice> stockPrices = null;
+		try {
+			stockPrices = stockPriceService.getStockPricesForCompanyComparison(compareRequest);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			return ResponseEntity
+					.status(HttpStatus.BAD_REQUEST)
+					.body("Invalid Date Format");
+		}
+		
+		return ResponseEntity.ok(stockPrices);
+	}
 	
 
 	    

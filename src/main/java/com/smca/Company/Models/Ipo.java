@@ -45,8 +45,7 @@ public class Ipo {
 	@JsonIgnore
 	private Company company;
 	
-	@ManyToMany
-	private List<StockExchange> stockExchanges = new ArrayList<>();
+	
 	
 	
 	
@@ -66,14 +65,6 @@ public class Ipo {
 
 	public void setCompany(Company company) {
 		this.company = company;
-	}
-
-	public List<StockExchange> getStockExchanges() {
-		return stockExchanges;
-	}
-
-	public void setStockExchanges(List<StockExchange> stockExchanges) {
-		this.stockExchanges = stockExchanges;
 	}
 
 	public Long getId() {

@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -66,6 +67,9 @@ public class Company {
 	
 	private String sectorName;
 	
+	@ManyToMany
+	private List<StockExchange> stockExchanges;
+	
 	public Company() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -93,6 +97,14 @@ public class Company {
 	
 	
 	
+	public List<StockExchange> getStockExchanges() {
+		return stockExchanges;
+	}
+
+	public void setStockExchanges(List<StockExchange> stockExchanges) {
+		this.stockExchanges = stockExchanges;
+	}
+
 	public List<StockPrice> getStockPrice() {
 		return stockPrice;
 	}
@@ -126,11 +138,11 @@ public class Company {
 		this.id = id;
 	}
 
-	public String getname() {
+	public String getName() {
 		return name;
 	}
 
-	public void setname(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
