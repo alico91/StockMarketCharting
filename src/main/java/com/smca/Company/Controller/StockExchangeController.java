@@ -56,6 +56,11 @@ public class StockExchangeController {
 		stockExchangeService.deleteStockExchange(id);
 	}
 	
+	@GetMapping(path="/{id}/companies")
+	public ResponseEntity<List<Company>> getAllCompanies( @PathVariable long id)
+	{
+		return ResponseEntity.ok(stockExchangeService.getAllCompanies(id));
+	}
 
 
 	

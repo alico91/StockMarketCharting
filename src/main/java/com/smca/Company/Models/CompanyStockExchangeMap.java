@@ -9,6 +9,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 
 @Entity
@@ -23,12 +26,14 @@ public class CompanyStockExchangeMap {
 	
 	private String companyName;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Company company;
 	
 	private String stockExchangeName;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private StockExchange stockExchange;
 
 	public Company getCompany() {
@@ -93,4 +98,12 @@ public class CompanyStockExchangeMap {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	public CompanyStockExchangeMap(String companyCode, String companyName, String stockExchangeName) {
+		super();
+		this.companyCode = companyCode;
+		this.companyName = companyName;
+		this.stockExchangeName = stockExchangeName;
+	}
+	
 }

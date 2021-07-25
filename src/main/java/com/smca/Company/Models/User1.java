@@ -33,8 +33,8 @@ public class User1 {
 	private String email;
 	
 
-	@Column(name = "mobilenumber")
-	private int mobilenumber;
+	@Column(name = "mobile")
+	private int mobile;
 	
 
 	@Column(name = "confirmed")
@@ -83,12 +83,12 @@ public class User1 {
 		this.email = email;
 	}
 
-	public int getMobilenumber() {
-		return mobilenumber;
+	public int getMobile() {
+		return mobile;
 	}
 
-	public void setMobilenumber(int mobilenumber) {
-		this.mobilenumber = mobilenumber;
+	public void setMobile(int mobile) {
+		this.mobile = mobile;
 	}
 
 	public Boolean getConfirmed() {
@@ -111,7 +111,7 @@ public class User1 {
 		super();
 	}
 	
-	public User1(Long id, String username, String password, String usertype, String email, int mobilenumber,
+	public User1(Long id, String username, String password, String usertype, String email, int mobile,
 			Boolean confirmed) {
 		super();
 		this.id = id;
@@ -119,7 +119,7 @@ public class User1 {
 		this.password = password;
 		this.usertype = usertype;
 		this.email = email;
-		this.mobilenumber = mobilenumber;
+		this.mobile = mobile;
 		this.confirmed = confirmed;
 	}
 	

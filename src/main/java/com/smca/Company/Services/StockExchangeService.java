@@ -1,11 +1,13 @@
 package com.smca.Company.Services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import com.smca.Company.Models.Company;
+import com.smca.Company.Models.CompanyStockExchangeMap;
 import com.smca.Company.Models.StockExchange;
 import com.smca.Company.Repository.StockExchangeRepository;
 
@@ -42,6 +44,17 @@ public class StockExchangeService {
 	public void deleteStockExchange(Long id) {
 		stockexRepository.deleteById(id);
 		
+	}
+
+	public List<Company> getAllCompanies(long id) {
+		List<CompanyStockExchangeMap> compstockmap=stockexRepository.findById(id).get().getCompstockmap();
+		List<Company> companies = new ArrayList<Company>();
+		
+		for(CompanyStockExchangeMap cmps:compstockmap){
+			companies.add(cmps.getCompany());
+		}
+		
+		return companies;
 	}
 
 

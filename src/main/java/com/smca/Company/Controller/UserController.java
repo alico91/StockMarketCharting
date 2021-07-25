@@ -14,25 +14,35 @@ import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+
+
 import com.smca.Company.Models.User1;
 import com.smca.Company.Repository.UserRepository;
 
+
 @CrossOrigin(origins= "http://localhost:4200")
 @RestController
+@RequestMapping("/auth")
 public class UserController {
 	
 	@Autowired
 	UserRepository userRepository;
 	
-	@CrossOrigin(origins ="http://localhost:3000")
-	@RequestMapping(value = "/setuserapi",method=RequestMethod.POST)
+	
+	
+//	@Autowired
+//	private JwtTokenUtil jwtTokenUtil;
+	
+	@RequestMapping(value = "/signup",method=RequestMethod.POST)
 	public String Stringreactuserapi(@RequestHeader User1 user) throws AddressException, MessagingException {	
 		
 		User1 usrsaved = userRepository.save(user);
@@ -46,10 +56,7 @@ public class UserController {
 	
 	public void sendemail(Long userid) throws AddressException, MessagingException {
 
-	      User1 user = userRepository.getById(userid);	
-
-
-
+	      	User1 user = userRepository.getById(userid);	
 
 			final String username = "socgentraining@gmail.com";
 			final String password = "suckgensucks";
@@ -71,10 +78,6 @@ public class UserController {
 
 				Message message = new MimeMessage(session);
 				message.setFrom(new InternetAddress("socgentraining@gmail.com"));
-				//message.setRecipients(
-					//	Message.RecipientType.TO,
-					//	InternetAddress.parse("sftrainerram@gmail.com")
-					//	);
 				message.setRecipients(
 						Message.RecipientType.TO,
 						InternetAddress.parse(user.getEmail())
@@ -104,5 +107,7 @@ public class UserController {
 		userRepository.save(usr);
 		return "User confirmed" +usr.getUsername();
 	}
+	
+
 
 }

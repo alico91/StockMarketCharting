@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -50,13 +51,21 @@ public class StockPriceController {
 	}
 
 
-	//@CrossOrigin(origins ="http://localhost:3000")
 	@RequestMapping(value = "/getstockprices",method=RequestMethod.GET, headers = "Accept=application/json"  )
 	public List<StockPrice> getstockprice() throws ClassNotFoundException, IOException {
 
 	    List<StockPrice> stkprice= stkpricerepo.findAll();
 	    return stkprice;
 	}
+	
+//	@GetMapping(path = "/compareCompany")
+//	public ResponseEntity<?> companyComparison(@RequestBody CompanyCompareRequest compareRequest)
+//	{
+//		List<StockPrice> stockPrices = null;
+//		stockPrices = StockPriceService.getStockPricesForCompanyComparison(compareRequest);
+//		
+//		return ResponseEntity.ok(stockPrices);
+//	}
 	
 
 	    

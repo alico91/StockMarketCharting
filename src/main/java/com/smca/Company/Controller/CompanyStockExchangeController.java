@@ -1,7 +1,11 @@
 package com.smca.Company.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +19,7 @@ import com.smca.Company.Repository.CompanyStockExchangeMapRepository;
 import com.smca.Company.Repository.StockExchangeRepository;
 
 @RestController
-@CrossOrigin("http:localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200", exposedHeaders="Access-Control-Allow-Origin")
 @RequestMapping("/mapcompanycode")
 public class CompanyStockExchangeController {
 	
@@ -39,5 +43,12 @@ public class CompanyStockExchangeController {
 		csemap.setStockExchangeName(cmpstkmap.getStockExchangeName());
 		compstkmaprepo.save(csemap);
 		return csemap;
+	}
+	
+	@GetMapping(path = "")
+	public ResponseEntity<List<CompanyStockExchangeMap>> getMappings(){
+		List<CompanyStockExchangeMap> comstockexmaps = compstkmaprepo.findAll();
+		return ResponseEntity
+				.ok(comstockexmaps);
 	}
 }

@@ -57,6 +57,7 @@ public class Company {
 	private Ipo ipo;
 	
 	@OneToMany(targetEntity = CompanyStockExchangeMap.class)
+	@JsonIgnore
 	private List<CompanyStockExchangeMap> compstockmap;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
