@@ -1,9 +1,8 @@
 package com.smca.Company.Models;
 
-import java.sql.Time;
-import java.util.Date;
 
-import javax.persistence.Column;
+
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -28,9 +27,9 @@ public class StockPrice {
 	
 	private float currentPrice;
 	
-	private Date date;
+	private String date;
 	
-	private Time time;
+	private String time;
 	
 	@ManyToOne(fetch= FetchType.LAZY)
 	@JsonIgnore
@@ -77,21 +76,37 @@ public class StockPrice {
 		this.currentPrice = currentPrice;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
-	public Time getTime() {
+	public String getTime() {
 		return time;
 	}
 
-	public void setTime(Time time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
+
+	public StockPrice(String companyCode, String exchangeName, float currentPrice, String date, String time) {
+		super();
+		this.companyCode = companyCode;
+		this.exchangeName = exchangeName;
+		this.currentPrice = currentPrice;
+		this.date = date;
+		this.time = time;
+	}
+
+	public StockPrice() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
 	
 	
 }

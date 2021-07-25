@@ -17,84 +17,84 @@ import org.springframework.web.multipart.MultipartFile;
 import com.smca.Company.Models.StockPrice;
 
 public class ImportConfig {
-	public static String TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-//  static String[] HEADERs = { "Company Code", "Stock Exchange", "Price Per Share(in Rs)", "Date" };
-  static String SHEET = "Sheet1";
-
-
-  public static boolean hasExcelFormat(MultipartFile file) {
-
-      if (!TYPE.equals(file.getContentType())) {
-          return false;
-      }
-
-      return true;
-  }
-
-  public static List<StockPrice> excelToStockPrice(InputStream is){
-      try {
-          Workbook workbook = new XSSFWorkbook(is);
-          Sheet worksheet = workbook.getSheet(SHEET);
-          Iterator<Row> rows = worksheet.iterator();
-
-          List<StockPrice> stockPriceList = new ArrayList<>();
-
-          int rowNumber = 0;
-          while (rows.hasNext()) {
-              Row currentRow = rows.next();
-
-              // skip header
-              if (rowNumber == 0) {
-                  rowNumber++;
-                  continue;
-              }
-
-              Iterator<Cell> cellsInRow = currentRow.iterator();
-
-              StockPrice data = new StockPrice();
-
-              int cellIdx = 0;
-              while (cellsInRow.hasNext()) {
-                  Cell currentCell = cellsInRow.next();
-
-                  switch (cellIdx) {
-                      case 0:
-                          data.setCompanyCode( currentCell.getStringCellValue());
-                          break;
-
-                      case 1:
-                          data.setExchangeName(currentCell.getStringCellValue());
-                          break;
-
-                      case 2:
-                          data.setCurrentPrice((float)currentCell.getNumericCellValue());
-                          break;
-
-                      case 3:
-                          data.setDate( currentCell.getDateCellValue());
-                          break;
-
-                      case 4:
-                          data.setTime( (Time)currentCell.getDateCellValue());
-                          break;
-
-                      default:
-                          break;
-                  }
-
-                  cellIdx++;
-              }
-
-
-              stockPriceList.add(data);
-          }
-
-          workbook.close();
-
-          return stockPriceList;
-      } catch (IOException e) {
-          throw new RuntimeException("fail to parse Excel file: " + e.getMessage());
-      }
-
-  }
+//	public static String TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+////  static String[] HEADERs = { "Company Code", "Stock Exchange", "Price Per Share(in Rs)", "Date" };
+//  static String SHEET = "Sheet1";
+//
+//
+//  public static boolean hasExcelFormat(MultipartFile file) {
+//
+//      if (!TYPE.equals(file.getContentType())) {
+//          return false;
+//      }
+//
+//      return true;
+//  }
+//
+//  public static List<StockPrice> excelToStockPrice(InputStream is){
+//      try {
+//          Workbook workbook = new XSSFWorkbook(is);
+//          Sheet worksheet = workbook.getSheet(SHEET);
+//          Iterator<Row> rows = worksheet.iterator();
+//
+//          List<StockPrice> stockPriceList = new ArrayList<>();
+//
+//          int rowNumber = 0;
+//          while (rows.hasNext()) {
+//              Row currentRow = rows.next();
+//
+//              // skip header
+//              if (rowNumber == 0) {
+//                  rowNumber++;
+//                  continue;
+//              }
+//
+//              Iterator<Cell> cellsInRow = currentRow.iterator();
+//
+//              StockPrice data = new StockPrice();
+//
+//              int cellIdx = 0;
+//              while (cellsInRow.hasNext()) {
+//                  Cell currentCell = cellsInRow.next();
+//
+//                  switch (cellIdx) {
+//                      case 0:
+//                          data.setCompanyCode( currentCell.getStringCellValue());
+//                          break;
+//
+//                      case 1:
+//                          data.setExchangeName(currentCell.getStringCellValue());
+//                          break;
+//
+//                      case 2:
+//                          data.setCurrentPrice((float)currentCell.getNumericCellValue());
+//                          break;
+//
+//                      case 3:
+//                          data.setDate( currentCell.getDateCellValue());
+//                          break;
+//
+//                      case 4:
+//                          data.setTime( (Time)currentCell.getDateCellValue());
+//                          break;
+//
+//                      default:
+//                          break;
+//                  }
+//
+//                  cellIdx++;
+//              }
+//
+//
+//              stockPriceList.add(data);
+//          }
+//
+//          workbook.close();
+//
+//          return stockPriceList;
+//      } catch (IOException e) {
+//          throw new RuntimeException("fail to parse Excel file: " + e.getMessage());
+//      }
+//
+//  }
 }

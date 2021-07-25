@@ -15,20 +15,20 @@ import com.smca.Company.Repository.StockPriceRepository;
 @Service
 public class ImportService {
 	
-	@Autowired
-    private StockPriceRepository stockRepository;
-
-
-    public void uploadFile( MultipartFile file){
-
-    	try {
-
-            List<StockPrice> stockPriceList = ImportConfig.excelToStockPrice(file.getInputStream());
-            stockRepository.saveAll(stockPriceList);
-
-
-        } catch (IOException e) {
-            throw new RuntimeException("fail to store excel data: " + e.getMessage());
-        }
-    }
+//	@Autowired
+//    private StockPriceRepository stockRepository;
+//
+//
+//    public void uploadFile( MultipartFile file){
+//
+//    	try {
+//
+//            List<StockPrice> stockPriceList = ImportConfig.excelToStockPrice(file.getInputStream());
+//            stockRepository.saveAll(stockPriceList);
+//
+//
+//        } catch (IOException e) {
+//            throw new RuntimeException("fail to store excel data: " + e.getMessage());
+//        }
+//    }
 }
