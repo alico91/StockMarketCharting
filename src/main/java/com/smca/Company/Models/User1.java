@@ -13,34 +13,19 @@ import javax.persistence.Table;
 public class User1 {
 	
 	@Id
-	@Column(name = "Id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(name = "username")
 	private String username;
 	
-
-	@Column(name = "password")
 	private String password;
 	
+	private String role;
 	
-	@Column(name = "usertype")
-	private String usertype;
-	
-    
-	@Column(name = "email")
 	private String email;
 	
-
-	@Column(name = "mobile")
-	private int mobile;
-	
-
-	@Column(name = "confirmed")
 	private Boolean confirmed;
-	
-	@Column(name = "admin")
+
 	private Boolean admin;
 	
 	public Long getId() {
@@ -67,12 +52,12 @@ public class User1 {
 		this.password = password;
 	}
 
-	public String getUsertype() {
-		return usertype;
+	public String getRole() {
+		return role;
 	}
 
-	public void setUsertype(String usertype) {
-		this.usertype = usertype;
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public String getEmail() {
@@ -81,14 +66,6 @@ public class User1 {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public int getMobile() {
-		return mobile;
-	}
-
-	public void setMobile(int mobile) {
-		this.mobile = mobile;
 	}
 
 	public Boolean getConfirmed() {
@@ -111,16 +88,19 @@ public class User1 {
 		super();
 	}
 	
-	public User1(Long id, String username, String password, String usertype, String email, int mobile,
-			Boolean confirmed) {
+	public User1(String username, String password,String email) {
 		super();
-		this.id = id;
 		this.username = username;
 		this.password = password;
-		this.usertype = usertype;
 		this.email = email;
-		this.mobile = mobile;
-		this.confirmed = confirmed;
+		
 	}
 	
+	public User1(String username, String password, String email, Boolean admin) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.admin = admin;
+	}
 }

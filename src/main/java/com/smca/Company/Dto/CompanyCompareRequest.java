@@ -11,7 +11,7 @@ public class CompanyCompareRequest {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	private String companyCode;
+	private String companyName;
 	private String stockExchangeName;
 	private String fromPeriod;
 	private String toPeriod;
@@ -19,7 +19,7 @@ public class CompanyCompareRequest {
 	public CompanyCompareRequest(String companyCode, String stockExchangeName, String fromPeriod, String toPeriod,
 			String periodicity) {
 		super();
-		this.companyCode = companyCode;
+		this.companyName = companyCode;
 		this.stockExchangeName = stockExchangeName;
 		this.fromPeriod = fromPeriod;
 		this.toPeriod = toPeriod;
@@ -36,11 +36,11 @@ public class CompanyCompareRequest {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getCompanyCode() {
-		return companyCode;
+	public String getCompanyName() {
+		return companyName;
 	}
-	public void setCompanyCode(String companyCode) {
-		this.companyCode = companyCode;
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 	public String getStockExchangeName() {
 		return stockExchangeName;

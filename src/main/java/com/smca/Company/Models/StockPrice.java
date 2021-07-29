@@ -3,18 +3,24 @@ package com.smca.Company.Models;
 
 
 
+import java.sql.Time;
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="stock_price")
+@NamedQuery(name = "StockPrice.findByCompanyCodeAndExchangeName",query = "SELECT s FROM StockPrice s" + " WHERE s.companyCode = :companyCode AND s.exchangeName=:exchangeName")
 public class StockPrice {
 	
 	@Id
@@ -27,9 +33,10 @@ public class StockPrice {
 	
 	private float currentPrice;
 	
-	private String date;
+	@JsonFormat(pattern="dd-MM-yyyy")
+	private Date date;
 	
-	private String time;
+	private Time time;
 	
 	@ManyToOne(fetch= FetchType.LAZY)
 	@JsonIgnore
@@ -76,23 +83,23 @@ public class StockPrice {
 		this.currentPrice = currentPrice;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
-	public String getTime() {
+	public Time getTime() {
 		return time;
 	}
 
-	public void setTime(String time) {
+	public void setTime(Time time) {
 		this.time = time;
 	}
 
-	public StockPrice(String companyCode, String exchangeName, float currentPrice, String date, String time) {
+	public StockPrice(String companyCode, String exchangeName, float currentPrice, Date date, Time time) {
 		super();
 		this.companyCode = companyCode;
 		this.exchangeName = exchangeName;
@@ -104,6 +111,12 @@ public class StockPrice {
 	public StockPrice() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "StockPrice [Id=" + Id + ", companyCode=" + companyCode + ", exchangeName=" + exchangeName
+				+ ", currentPrice=" + currentPrice + ", date=" + date + ", time=" + time + ", company=" + company + "]";
 	}
 	
 	

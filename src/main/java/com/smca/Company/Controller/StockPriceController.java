@@ -2,10 +2,12 @@ package com.smca.Company.Controller;
 
 import java.io.IOException;
 import java.net.URI;
+
 import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -72,7 +74,8 @@ public class StockPriceController {
 	    return stkprice;
 	}
 	
-	@GetMapping(path = "/compareCompany")
+	@PostMapping(path = "/compareCompany")
+	@CrossOrigin(origins ="http://localhost:4200")
 	public ResponseEntity<?> companyComparison(@RequestBody CompanyCompareRequest compareRequest)
 	{
 		List<StockPrice> stockPrices = null;
@@ -84,7 +87,8 @@ public class StockPriceController {
 					.status(HttpStatus.BAD_REQUEST)
 					.body("Invalid Date Format");
 		}
-		
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Access-Control-Allow-Origin", "*");
 		return ResponseEntity.ok(stockPrices);
 	}
 	

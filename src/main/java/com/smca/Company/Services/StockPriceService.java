@@ -60,17 +60,20 @@ public class StockPriceService {
 	public List<StockPrice> getStockPricesForCompanyComparison(CompanyCompareRequest compareRequest) throws ParseException{
 		Date fromDate = new SimpleDateFormat("dd-MM-yyyy").parse(compareRequest.getFromPeriod());
 		Date toDate = new SimpleDateFormat("dd-MM-yyyy").parse(compareRequest.getToPeriod());
-		List<StockPrice> stockPrices = stockPriceRepository
-				.findByCompanyCodeAndExchangeName(compareRequest.getCompanyCode(), compareRequest.getStockExchangeName());
+		System.out.println(compareRequest.toString());
+		System.out.println(compareRequest.getCompanyName());
+		CompanyStockExchangeMap csemap=csemrepo.findByCompanyNameAndStockExchangeName
+                (compareRequest.getCompanyName(), compareRequest.getStockExchangeName());
+          System.out.println(csemap.toString());
+
+        List<StockPrice> stockPrices = stockPriceRepository
+                .findByCompanyCodeAndExchangeName(csemap.getCompanyCode(), csemap.getStockExchangeName());
+        System.out.println(stockPrices.toString());
 		List<StockPrice> filteredList = stockPrices.stream()
 				.filter(stockPrice -> {
 					Date date = null;
-					try {
-						date = new SimpleDateFormat("dd-MM-yyyy").parse(stockPrice.getDate());
-					} catch (ParseException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					date = stockPrice.getDate();
+					
 					
 					return date.after(fromDate) && date.before(toDate);
 				})

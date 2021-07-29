@@ -42,7 +42,7 @@ public class UserController {
 //	@Autowired
 //	private JwtTokenUtil jwtTokenUtil;
 	
-	@RequestMapping(value = "/signup",method=RequestMethod.POST)
+	@RequestMapping(value = "/register",method=RequestMethod.POST)
 	public String Stringreactuserapi(@RequestHeader User1 user) throws AddressException, MessagingException {	
 		
 		User1 usrsaved = userRepository.save(user);

@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -16,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "CompanyStockExchangeMap")
+@NamedQuery(name = "CompanyStockExchangeMap.findByCompanyNameAndStockExchangeName", query = "SELECT c FROM CompanyStockExchangeMap c WHERE c.companyName = :companyName AND c.stockExchangeName=:stockExchangeName")
 public class CompanyStockExchangeMap {
 
 	@Id
@@ -105,5 +107,13 @@ public class CompanyStockExchangeMap {
 		this.companyName = companyName;
 		this.stockExchangeName = stockExchangeName;
 	}
+
+	@Override
+	public String toString() {
+		return "CompanyStockExchangeMap [id=" + id + ", companyCode=" + companyCode + ", companyName=" + companyName
+				+ ", company=" + company + ", stockExchangeName=" + stockExchangeName + ", stockExchange="
+				+ stockExchange + "]";
+	}
+	
 	
 }

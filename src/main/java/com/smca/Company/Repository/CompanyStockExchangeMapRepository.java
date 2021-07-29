@@ -10,5 +10,7 @@ import com.smca.Company.Models.CompanyStockExchangeMap;
 public interface CompanyStockExchangeMapRepository extends JpaRepository<CompanyStockExchangeMap,Long>{
 
 	CompanyStockExchangeMap findByCompanyCode(String companyCode);
+
+	CompanyStockExchangeMap findByCompanyNameAndStockExchangeName(String companyName, String stockExchangeName);
 	
 }
